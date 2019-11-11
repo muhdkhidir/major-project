@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -44,7 +44,7 @@ class LoginController extends Controller
         if(Auth::guard('admin')->check()) {
             $redirect = '/admin';
         } else {
-            $redirect = '/';
+            $redirect = '/register';
         }
         $this->guard()->logout();
         $request->session()->invalidate();

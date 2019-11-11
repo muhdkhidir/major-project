@@ -16,6 +16,17 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+
+Route::get('/welcome', 'WelcomeController@index')->name('welcome');
+
+
+
+
+
+Route::get('welcome',function(){
+    return view('welcome');
+});
+
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/login', 'Auth\AdminLoginController@loginForm')->name('admin.login');
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.post');
@@ -28,9 +39,3 @@ Route::group(['prefix' => 'admin'], function () {
 
 });
 
-Route::group(['prefix' => '/api/v1'], function () {
-    Route::resource('products', 'Api\ProductController', ['except' => ['create', 'edit']]);
-    Route::resource('cart', 'Api\CartController', ['except' => ['create', 'edit']]);
-    Route::get('cart-place-order', 'Api\CartController@placeOrder');
-
-});
